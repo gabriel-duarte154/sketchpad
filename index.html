@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sketchpad- Draw and Craete</title>
+    <link rel="shortcut icon" href="icons/pincel.png" type="image/x-png">
     <link rel="stylesheet" href="style/main.css">
     <script  src="main.js" defer></script>
 </head>
@@ -14,12 +15,18 @@
     </header>
     <div class="main-container">
         <div class="top-menu">
-            <input type="color" id="color">
-            <div class="button-container">
-                <button id="drawBtn">Draw</button>
-                <button id="eraseBtn">Erase</button>
-                <button id="randowBtn">Randow</button>
-                <button id="clearBtn">Clear</button>
+            <input type="color" id="color" class="cell">
+
+            <div class="menu-smallDevice">
+                <button class="modeBtn" id="modeBtn">Mode</button>
+            </div>
+            <div class="hidden" id="hamMenu">
+                <div class="button-container">
+                    <button id="draw">Draw</button>
+                    <button id="erase">Erase</button>
+                    <button id="randow">Randow</button>
+                    <button id="clear">Clear</button>
+                </div>
             </div>
             <div class="size-container">
                 <label for="range" id="range-label">16X16</label>
