@@ -1,24 +1,37 @@
 let gridContainer = document.querySelector(".grid-container");
-let gridArea = gridContainer.clientWidth * gridContainer.clientHeight;
 let range = document.querySelector("#range");
-let rangeArea;
+let size = range.value;
+let rangeLabel = document.querySelector("#range-label");
+let mouseDown = false;
+document.body.onmousedown = () => mouseDown = true;
+document.body.onmouseup = () => mouseDown = false;
 
-
-range.addEventListener("input", function() {
-    gridContainer.innerHTML = ""
-    let label = document.querySelector("#range-label");
-    label.innerText = `${range.value}x${range.value}`
-    rangeArea = Math.sqrt( gridArea / (range.value**2));
-    console.log(rangeArea)
-    rangeArea += "px"
-
-    for (let i = 1; i <= range.value**2; i++) {
-        let div = document.createElement("div");
-        div.classList = "grid-item";
-        div.style.width = rangeArea;
-        div.style.height = rangeArea;
-        gridContainer.appendChild(div)
+function changeColor(cell) {
+    if (mouseDown) {
+        cell.target.style.backgroundColor = "black"
     }
+};
+function clickDraw(cell) {
+    cell.target.style.backgroundColor = "black"
+};
 
-} )
 
+
+range.oninput = (e) => reSize(e.target.value)
+
+
+function reSize(size) {
+    gridContainer.innerHTML = ""
+    gridContainer.style.cssText = `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr)`;
+
+    for (let i = 0; i < size * size; i++) {
+        let cell = document.createElement("div");
+        cell.classList = "grid-item";
+        gridContainer.appendChild(cell)
+        cell.addEventListener("mouseover", changeColor)
+        cell.addEventListener("mousedown", clickDraw)
+    };
+    rangeLabel.innerText = `${size}X${size}`;
+}
+
+reSize(size)
