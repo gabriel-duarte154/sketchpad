@@ -9,9 +9,35 @@
     <script  src="main.js" defer></script>
 </head>
 <body>
-    <div class="grid-container">
+    <header class="main-header">
+        <h1 class="header-title">Sketchpad</h1>
+    </header>
+    <div class="main-container">
+        <div class="top-menu">
+            <input type="color" id="color">
+            <div class="button-container">
+                <button class="active">Draw</button>
+                <button>Erase</button>
+                <button>Randow</button>
+                <button>Clear</button>
+            </div>
+            <div class="size-container">
+                <label for="range" id="range-label">16X16</label>
+                <input type="range" max="64" min="1" value="16" id="range">
+            </div>
+            
+        </div>
+        <div class="grid-container">
+        </div>
     </div>
-    <label for="range" id="range-label">16X16</label>
-    <input type="range" max="64" min="1" value="16" id="range" >
+    <footer>
+        <div class="main-footer">
+            &copy
+            <a href="https://github.com/gabriel-duarte154/sketchpad" target="_blank" class="footer-link">
+                Gabriel Duarte
+            </a>
+            2023
+        </div>
+    </footer>
 </body>
 </html>

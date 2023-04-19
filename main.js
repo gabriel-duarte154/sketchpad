@@ -2,19 +2,19 @@ let gridContainer = document.querySelector(".grid-container");
 let range = document.querySelector("#range");
 let size = range.value;
 let rangeLabel = document.querySelector("#range-label");
+let currentColor = document.querySelector("#color");
 let mouseDown = false;
-document.body.onmousedown = () => mouseDown = true;
-document.body.onmouseup = () => mouseDown = false;
+gridContainer.onmousedown = () => mouseDown = true;
+gridContainer.onmouseup = () => mouseDown = false;
 
 function changeColor(cell) {
     if (mouseDown) {
-        cell.target.style.backgroundColor = "black"
+        cell.target.style.backgroundColor = `${currentColor.value}`
     }
 };
 function clickDraw(cell) {
-    cell.target.style.backgroundColor = "black"
+    cell.target.style.backgroundColor = `${currentColor.value}`
 };
-
 
 
 range.oninput = (e) => reSize(e.target.value)
@@ -32,6 +32,7 @@ function reSize(size) {
         cell.addEventListener("mousedown", clickDraw)
     };
     rangeLabel.innerText = `${size}X${size}`;
-}
+};
 
-reSize(size)
+reSize(size);
+
