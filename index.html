@@ -16,10 +16,10 @@
         <div class="top-menu">
             <input type="color" id="color">
             <div class="button-container">
-                <button class="active">Draw</button>
-                <button>Erase</button>
-                <button>Randow</button>
-                <button>Clear</button>
+                <button id="drawBtn">Draw</button>
+                <button id="eraseBtn">Erase</button>
+                <button id="randowBtn">Randow</button>
+                <button id="clearBtn">Clear</button>
             </div>
             <div class="size-container">
                 <label for="range" id="range-label">16X16</label>
@@ -27,7 +27,10 @@
             </div>
             
         </div>
-        <div class="grid-container">
+
+        <div class="grid-wrap">
+            <div class="cell-container" draggable="false">
+            </div>
         </div>
     </div>
     <footer>
