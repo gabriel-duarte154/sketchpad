@@ -140,6 +140,7 @@ input[type=range]::-webkit-slider-thumb {
     display: flex;
     flex-direction: column;
 }
+
 .cell-container {
     display: grid;
     border: 1px solid;
@@ -157,9 +158,11 @@ input[type=range]::-webkit-slider-thumb {
     padding: 0;
     user-select: none;
 }
+
 .trasition {
-    transition: background-color 0.5s ease;
+    transition: background-color 0.5s ease-in-out;
 }
+
 footer {
     display: flex;
     margin-top: 30px;
@@ -238,11 +241,12 @@ footer {
         position: absolute;
         left: 0;
         top: 193px;
-        display: flex;
+        display: none;
         justify-content: center;
         position: absolute;
     }
     .menu-smallDevice {
         display: block;
+        text-transform: capitalize;
     }
 }

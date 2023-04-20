@@ -19,37 +19,29 @@ function generateHslColor() {
     return randowColor;
 };
 
-function draw(cell, click) {
-    if(mouseDown || click == "on") {
-        if (currentMode == "draw") {
-            cell.target.style.backgroundColor = `${currentColor.value}`; 
+function changeColor(e) {
+    if (!mouseDown && e.type === "mouseover" ){return};
+        if (currentMode == "color") {
+            e.target.style.backgroundColor = `${currentColor.value}`; 
         };
         if(currentMode == "erase") {
-            cell.target.style.backgroundColor = "initial";
+            e.target.style.backgroundColor = "initial";
         };
         if(currentMode == "randow") {
-            cell.target.style.backgroundColor = generateHslColor();
+            e.target.style.backgroundColor = generateHslColor();
         }
-    };
-    gridContainer.childNodes.forEach(cell => {
-        cell.classList.remove("trasition")
-        
-    })
+        e.target.classList.remove("trasition");
 };
 
-function activeDraw(cell) {
-    draw(cell, "on");
-};
-
-function creatGrid(size) {
+function createGrid(size) {
     gridContainer.innerHTML = "";
     gridContainer.style.cssText = `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr)`;
     for (let i = 0; i < size * size; i++) {
         let cell = document.createElement("div");
         cell.classList = "grid-item";
         gridContainer.appendChild(cell)
-        cell.addEventListener("mouseover", draw)
-        cell.addEventListener("mousedown", activeDraw)
+        cell.addEventListener("mouseover", changeColor)
+        cell.addEventListener("mousedown", changeColor)
     };
     rangeLabel.innerText = `${size} X ${size}`;
 };
@@ -61,8 +53,8 @@ function clearGrid() {
    })
 };
 
-function changeMode(mode) {
-    if (mode == "draw") {
+function setupMode(mode) {
+    if (mode == "color") {
         currentMode = mode;
     }
     if(mode == "erase") {
@@ -86,7 +78,7 @@ function addActiveClass (e) {
 
 function selectMode(e) {
     if (e.target.matches("button")) {
-        changeMode(e.target.id)
+        setupMode(e.target.id)
         if(e.target.id != "clear") {
             addActiveClass(e)
         }  
@@ -98,8 +90,8 @@ buttonContainer.addEventListener("click", selectMode);
 clearBtn.addEventListener("click", clearGrid);
 document.body.onmousedown = () => mouseDown = true;
 document.body.onmouseup = () => mouseDown = false;
-range.oninput = (e) => creatGrid(e.target.value)
-creatGrid(size);
+range.oninput = (e) => createGrid(e.target.value)
+createGrid(size);
 
 let modeBtn = document.querySelector("#modeBtn");
 let menu = document.querySelector("#hamMenu");
